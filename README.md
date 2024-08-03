@@ -22,6 +22,11 @@ To start a sample sim, run the following command:
 
 ## TO DOs:
 - [ ] Setup sim env with Lunar south pole DEM
-- [ ] Figure out robot configurations
-- [ ] Teleop node 
+- [ ] Figure out robot configurations for sensor and publish data to ROS2
+- [ ] Add IMU to jackal robot
+- [ ] Add Odometry to jackal robot
+- [ ] Add Lidar to jackal robot
+- [ ] Add camera to jackal robot
+- [ ] Teleop node
+
 

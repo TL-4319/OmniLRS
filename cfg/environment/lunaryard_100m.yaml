@@ -11,9 +11,9 @@ enforce_realtime: true
 
 # Stage settings, only edit if you know what you are doing.
 lunaryard_settings:
-  lab_length: 20.0
-  lab_width: 20.0
-  resolution: 0.025
+  lab_length: 100.0
+  lab_width: 100.0
+  resolution: 0.1
   coordinates:
     latitude: 46.8
     longitude: -26.3
@@ -260,8 +260,8 @@ terrain_manager:
       x_size: ${....lunaryard_settings.lab_length}
       y_size: ${....lunaryard_settings.lab_width}
       resolution: ${....lunaryard_settings.resolution}
-      max_elevation: 1.5
-      min_elevation: -1.5
+      max_elevation: 5.5
+      min_elevation: -5.5
       z_scale: .5
       seed: ${....seed}
     
@@ -329,8 +329,8 @@ robots_settings:
 #    #   target_links: ["front_left_wheel_link", "front_right_wheel_link", "rear_left_wheel_link", "rear_right_wheel_link"]
 #    
     -
-      robot_name: jackal
-      usd_path: assets/USD_Assets/robots/jackal.usd
+      robot_name: viper
+      usd_path: assets/USD_Assets/robots/viper.usd
       pose:
         position: [5.0, 5.0, 0.5]
         orientation: [1, 0, 0, 0]

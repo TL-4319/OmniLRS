@@ -1,7 +1,7 @@
 name: LargeScale
 seed: 42
 physics_dt: 0.01666 # 60 Hz
-rendering_dt: 0.0333 # 30 Hz
+rendering_dt: 0.05 # 20 Hz
 enforce_realtime: true
 
 # Stage settings, only edit if you know what you are doing.
@@ -86,8 +86,8 @@ robots_settings:
   robots_root: "/Robots"
   parameters:
     -
-      robot_name: husky
-      usd_path: assets/USD_Assets/robots/ros2_husky_PhysX_vlp16.usd
+      robot_name: viper
+      usd_path: assets/USD_Assets/robots/viper.usd
       pose:
         position: [0.0, 0.0, 0.5]
         orientation: [1, 0, 0, 0]

@@ -23,7 +23,6 @@ stellar_engine_settings:
     minute: 50
   time_scale: 1
   update_interval: 600
-  distance_scale: 0.001
 
 sun_settings:
   intensity: 1750.0
@@ -161,7 +160,7 @@ terrain_manager:
     is_lab: True
 
   root_path: /Lunaryard
-  texture_path: /Lunaryard/Looks/Basalt
+  texture_path: Looks/Basalt
   dems_path: Terrains/Lunaryard
   mesh_position: [0, 0, 0]
   mesh_orientation: [0, 0, 0, 1] # Quaternion x,y,z,w
@@ -195,8 +194,8 @@ robots_settings:
     #   target_links: ["front_left_wheel_link", "front_right_wheel_link", "rear_left_wheel_link", "rear_right_wheel_link"]
 
     -
-      robot_name: husky
-      usd_path: assets/USD_Assets/robots/ros2_husky_PhysX_vlp16.usd
+      robot_name: viper
+      usd_path: assets/USD_Assets/robots/viper.usd
       pose:
         position: [5.0, 5.0, 0.5]
         orientation: [1, 0, 0, 0]

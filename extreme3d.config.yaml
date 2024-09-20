@@ -8,7 +8,7 @@ teleop_twist_joy_node:
     axis_angular:
       yaw: 2
     scale_angular:
-      yaw: 0.5
+      yaw: 0.3
       
     axis_angular:
       roll: 4
@@ -22,5 +22,5 @@ teleop_twist_joy_node:
       
         
     require_enable_button: False
-      
+    deadzone: 0.5
    

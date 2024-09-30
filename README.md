@@ -46,7 +46,11 @@ ros2 launch teleop_twist_joy teleop-launch.py config_filepath:='extreme3d.config
 Front/back speed is control via joystick forward/backward. Left/right turn is controlled via joystick twist. Depress thumb button to enable teleop command.
 
 ## TO DOs:
-- [ ] Fix jitter in OmniLRSv2
+- [ ] Fix jitter in OmniLRSv2 (might not be fixable - unrealistic during stationary phases. Non-issue if rover is moving)
+- [ ] Add Blickfeld Cube lidar to RTXLidar to VIPER asset
+- [ ] Add imu to VIPER asset
+- [ ] Add OV2311 optical camera to VIPER asset
+- [ ] Add better nav light to VIPER asset
 
 
 

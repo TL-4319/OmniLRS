@@ -17,7 +17,7 @@ RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 To start a sample sim, run the following command:
 
 ```
-~/.local/share/ov/pkg/isaac-sim-2023.1.1/python.sh run.py environment=largerscale
+~/.local/share/ov/pkg/isaac-sim-2023.1.1/python.sh run.py environment=largescale
 ```
 
 When the sim starts, stop the physics simulation and change the collision type to Separating Axis Theorem (SAT) instead of PCM in physics_scene/collision_type.

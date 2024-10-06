@@ -8,8 +8,10 @@ __status__ = "development"
 
 from threading import Thread
 
+from omni.isaac.kit import SimulationApp
 from omni.isaac.core import World
 from typing import Union
+import logging
 import omni
 import time
 
@@ -20,6 +22,10 @@ from src.environments_wrappers.ros2.lunalab_ros2 import ROS_LunalabManager
 from src.configurations.procedural_terrain_confs import TerrainManagerConf
 from rclpy.executors import SingleThreadedExecutor as Executor
 from src.physics.physics_scene import PhysicsSceneManager
+import rclpy
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(format="%(asctime)s %(message)s", datefmt="%m/%d/%Y %I:%M:%S %p")
 
 
 class Rate:
@@ -92,6 +98,7 @@ class ROS2_LabManagerFactory:
     def __call__(
         self,
         cfg: dict,
+        **kwargs,
     ) -> Union[ROS_LunalabManager, ROS_LunaryardManager]:
         """
         Returns an instance of the lab manager corresponding to the environment name.
@@ -105,7 +112,7 @@ class ROS2_LabManagerFactory:
 
         return self._lab_managers[cfg["environment"]["name"]](
             environment_cfg=cfg["environment"],
-            flares_cfg=cfg["rendering"]["lens_flares"],
+            **kwargs,
         )
 
 
@@ -128,7 +135,7 @@ class ROS2_SimulationManager:
     def __init__(
         self,
         cfg: dict,
-        simulation_app,
+        simulation_app: SimulationApp,
     ) -> None:
         """
         Initializes the simulation.
@@ -158,17 +165,22 @@ class ROS2_SimulationManager:
             self.rate = Rate(is_disabled=True)
 
         # Lab manager thread
-        self.ROSLabManager = ROS2_LMF(cfg)
-        exec1 = Executor()
-        exec1.add_node(self.ROSLabManager)
-        self.exec1_thread = Thread(target=exec1.spin, daemon=True, args=())
+        self.ROSLabManager = ROS2_LMF(
+            cfg, is_simulation_alive=self.simulation_app.is_running, close_simulation=self.simulation_app.close
+        )
+        self.exec1 = Executor()
+        self.exec1.add_node(self.ROSLabManager)
+        self.exec1_thread = Thread(target=self.exec1.spin, daemon=True, args=())
         self.exec1_thread.start()
         # Robot manager thread
         self.ROSRobotManager = ROS_RobotManager(cfg["environment"]["robots_settings"])
-        exec2 = Executor()
-        exec2.add_node(self.ROSRobotManager)
-        self.exec2_thread = Thread(target=exec2.spin, daemon=True, args=())
+        self.exec2 = Executor()
+        self.exec2.add_node(self.ROSRobotManager)
+        self.exec2_thread = Thread(target=self.exec2.spin, daemon=True, args=())
         self.exec2_thread.start()
+
+        if self.ROSLabManager.get_wait_for_threads():
+            self.simulation_app.add_wait(self.ROSLabManager.get_wait_for_threads())
 
         # Have you ever asked your self: "Is there a limit of topics one can subscribe to in ROS2?"
         # Yes "Josh" there is.
@@ -220,6 +232,20 @@ class ROS2_SimulationManager:
                     if self.world.current_time_step_index >= (self.deform_delay * self.world.get_physics_dt()):
                         self.ROSLabManager.LC.deform_terrain()
                         # self.ROSLabManager.LC.applyTerramechanics()
-            self.rate.sleep()
+            if not self.ROSLabManager.monitor_thread_is_alive():
+                logger.debug("Destroying the ROS nodes")
+                self.ROSLabManager.destroy_node()
+                self.ROSRobotManager.destroy_node()
+                logger.debug("Shutting down the ROS executors")
+                self.exec1.shutdown()
+                self.exec2.shutdown()
+                logger.debug("Joining the ROS threads")
+                self.exec1_thread.join()
+                self.exec2_thread.join()
+                logger.debug("Shutting down ROS2")
+                rclpy.shutdown()
+                break
 
+            self.rate.sleep()
+        self.world.stop()
         self.timeline.stop()

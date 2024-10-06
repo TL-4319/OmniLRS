@@ -329,8 +329,8 @@ robots_settings:
 #    #   target_links: ["front_left_wheel_link", "front_right_wheel_link", "rear_left_wheel_link", "rear_right_wheel_link"]
 #    
     -
-      robot_name: jackal
-      usd_path: assets/USD_Assets/robots/jackal.usd
+      robot_name: viper
+      usd_path: assets/USD_Assets/robots/viper.usd
       pose:
         position: [5.0, 5.0, 0.5]
         orientation: [1, 0, 0, 0]

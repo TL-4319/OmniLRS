@@ -2,7 +2,7 @@ name: LargeScale
 seed: 42
 physics_dt: 0.01666 # 60 Hz
 rendering_dt: 0.05 # 20 Hz
-enforce_realtime: true
+enforce_realtime: false
 
 # Stage settings, only edit if you know what you are doing.
 large_scale_terrain:

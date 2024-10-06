@@ -8,6 +8,7 @@ Source ROS2 for every new terminal. LAGER workstation already source ROS2 in .ba
 
 Prior to running the simulation, setup the environment of a new terminal by:
 
+
 ```
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/lagerworkstation/.local/share/ov/pkg/isaac-sim-2023.1.1/exts/omni.isaac.ros2_bridge/humble/lib
 RMW_IMPLEMENTATION=rmw_fastrtps_cpp
@@ -16,7 +17,7 @@ RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 To start a sample sim, run the following command:
 
 ```
-~/.local/share/ov/pkg/isaac-sim-2023.1.1/python.sh run.py environment=test_lunaryard_40m mode=ROS2 rendering=ray_tracing mode.bridge_name=humble
+~/.local/share/ov/pkg/isaac-sim-2023.1.1/python.sh run.py environment=largerscale
 ```
 
 When the sim starts, stop the physics simulation and change the collision type to Separating Axis Theorem (SAT) instead of PCM in physics_scene/collision_type.
@@ -48,5 +49,25 @@ Front/back speed is control via joystick forward/backward. Left/right turn is co
 ## TO DOs:
 - [ ] Fix jitter in OmniLRSv2
 
-
+## Directory Structure
+```bash
+.
+├── assets
+├── cfg
+│   ├── environment
+│   ├── mode
+│   └── rendering
+├── src
+│   ├── configurations
+│   ├── environments
+│   ├── environments_wrappers
+│   │   ├── ros1
+│   │   ├── ros2
+│   │   └── sdg
+│   ├── labeling
+│   ├── robots
+│   ├── ros
+│   └── terrain_management
+└── WorldBuilders
+```
 

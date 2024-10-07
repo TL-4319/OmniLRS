@@ -18,7 +18,7 @@ teleop_twist_joy_node:
     axis_angular:
       pitch: 5
     scale_angular:
-      pitch: 0.5
+      pitch: -0.5
       
         
     require_enable_button: False

@@ -49,8 +49,8 @@ Front/back speed is control via joystick forward/backward. Left/right turn is co
 ## TO DOs:
 - [ ] Fix jitter in OmniLRSv2 (might not be fixable - unrealistic during stationary phases. Non-issue if rover is moving)
 - [ ] Add Blickfeld Cube lidar to RTXLidar to VIPER asset
-- [ ] Add imu to VIPER asset
-- [ ] Add OV2311 optical camera to VIPER asset
+- [x] Add imu to VIPER asset
+- [x] Add CMV4000 optical camera to VIPER asset to emulate NavCam
 - [ ] Add better nav light to VIPER asset
 
 ## Directory Structure

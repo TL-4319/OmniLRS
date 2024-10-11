@@ -1,8 +1,8 @@
 name: LargeScale
 seed: 42
-physics_dt: 0.0166 # 30 Hz
-rendering_dt: 0.0333 # 30 Hz
-enforce_realtime: true
+physics_dt: 0.01666 # 60 Hz
+rendering_dt: 0.05 # 20 Hz
+enforce_realtime: false
 
 # Stage settings, only edit if you know what you are doing.
 large_scale_terrain:
@@ -19,7 +19,7 @@ large_scale_terrain:
           position_distribution:
             name: "thomas_point_process"
             parent_density: 0.04
-            child_density: 150
+            child_density: 100
             sigma: 3.0
             seed: 42
           scale_distribution:
@@ -27,11 +27,13 @@ large_scale_terrain:
             min: 0.02
             max: 0.05
             seed: 43
-      rock_assets_folder: "assets/USD_Assets/rocks/lunar_rocks/rocks_s2_r128"
+      rock_assets_folder: "assets/USD_Assets/rocks/small_rocks"
       instancer_name: "very_small_rock_instancer"
-      seed: 5
+      seed: 46
       block_span: 1
       add_colliders: False
+      texture_name: "seaside_rock_2k"
+      texture_path: "assets/Textures/seaside_rock_2k.mdl"
     -
       rock_sampler_cfg:
         block_size: 50
@@ -41,63 +43,21 @@ large_scale_terrain:
             name: "thomas_point_process"
             parent_density: 0.01
             child_density: 25
-            sigma: 2.5
+            sigma: 3.0
             seed: 44
           scale_distribution:
             name: "uniform"
             min: 0.05
             max: 0.2
             seed: 45
-      rock_assets_folder: "assets/USD_Assets/rocks/lunar_rocks/rocks_s3_r512"
+      rock_assets_folder: "assets/USD_Assets/rocks/small_rocks"
       instancer_name: "small_rock_instancer"
-      seed: 51
+      seed: 47
       block_span: 2
       add_colliders: True
-      collider_mode: "meshSimplification"
-    -
-      rock_sampler_cfg:
-        block_size: 50
-        seed: 42
-        rock_dist_cfg:
-          position_distribution:
-            name: "thomas_point_process"
-            parent_density: 0.0025
-            child_density: 5
-            sigma: 3.0
-            seed: 46
-          scale_distribution:
-            name: "uniform"
-            min: 0.2
-            max: 0.75
-            seed: 47
-      rock_assets_folder: "assets/USD_Assets/rocks/lunar_rocks/rocks_s4_r512"
-      instancer_name: "medium_rock_instancer"
-      seed: 52
-      block_span: 3
-      add_colliders: True
-      collider_mode: "meshSimplification"
-    -
-      rock_sampler_cfg:
-        block_size: 50
-        seed: 42
-        rock_dist_cfg:
-          position_distribution:
-            name: "thomas_point_process"
-            parent_density: 0.001
-            child_density: 3
-            sigma: 4.0
-            seed: 48
-          scale_distribution:
-            name: "uniform"
-            min: 0.75
-            max: 2.5
-            seed: 49
-      rock_assets_folder: "assets/USD_Assets/rocks/lunar_rocks/rocks_s5_r1024"
-      instancer_name: "large_rock_instancer"
-      seed: 53
-      block_span: 4
-      add_colliders: True
-      collider_mode: "meshSimplification"
+      collider_mode: "none"
+      texture_name: "seaside_rock_2k"
+      texture_path: "assets/Textures/seaside_rock_2k.mdl"
 
 stellar_engine_settings:
   start_date:
@@ -106,7 +66,7 @@ stellar_engine_settings:
     day: 21
     hour: 5
     minute: 1
-  time_scale: 1
+  time_scale: 1.0
   update_interval: 600
 
 sun_settings:

@@ -33,6 +33,7 @@ There are several environment to choose from which are located in ```cfg/envronm
 
 When the sim starts, stop the physics simulation and change the collision type to Separating Axis Theorem (SAT) instead of PCM in physics_scene/collision_type.
 
+
 ## Modify USD
 
 To start Isaac sim without the rest of the Lunar functionalities to edit an USD. Set the environment path in a terminal with 
@@ -66,8 +67,8 @@ Some sensors were added to the USB asset and the corresponding ROS2 publisher we
 * IMU 
   * Mounted near robot center of gravity
 
->[!NOTE]
->The synthetic data generation of camera and LIDAR are very intensive, especially in large environments which can actually causes crashes 
+>[!NOTE] 
+> The synthetic data generation of camera and LIDAR are very intensive, especially in large environments which can actually causes crashes. Currently, the asset viper_lidar_only.usd asset seems to be more stable with largescale environment. Actions during simulation including play/pause and physics engine changes need to be made slowly as to not crash the sim.
 
 ### Teleop
 Teleop supports the Logitech Extreme3D joystick. Once the sim is started, start the teleop node by running the following in a new terminal with ROS2 sourced

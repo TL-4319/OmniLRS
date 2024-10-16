@@ -79,12 +79,18 @@ ros2 launch teleop_twist_joy teleop-launch.py config_filepath:='extreme3d.config
 
 Front/back speed is control via joystick forward/backward. Left/right turn is controlled via joystick twist. The thumb stick can be used to control the navigation sensor assembly's pan/tilt
 
+### Custom RTXLidar
+Once the necessary LIDAR config .json file has been created. Add it to 
+```
+./exts/omni.isaac.sensor/data/lidar_configs
+```
+
 ### Misc
 A full ROS transformation tree is also available as topics for coordinate frame transformation and localization truthing
 
 ## TO DOs:
 - [ ] Fix jitter in OmniLRSv2 (might not be fixable - unrealistic during stationary phases. Non-issue if rover is moving)
-- [ ] Add Blickfeld Cube lidar to RTXLidar to VIPER asset
+- [x] Add Blickfeld Cube lidar to RTXLidar to VIPER asset
 - [x] Add imu to VIPER asset
 - [x] Add CMV4000 optical camera to VIPER asset to emulate NavCam
 - [ ] Add better nav light to VIPER asset

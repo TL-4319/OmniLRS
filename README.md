@@ -80,10 +80,20 @@ ros2 launch teleop_twist_joy teleop-launch.py config_filepath:='extreme3d.config
 Front/back speed is control via joystick forward/backward. Left/right turn is controlled via joystick twist. The thumb stick can be used to control the navigation sensor assembly's pan/tilt
 
 ### Custom RTXLidar
-Once the necessary LIDAR config .json file has been created. Add it to 
+
+Make new directory ```CUSTOM``` at 
 ```
-./exts/omni.isaac.sensor/data/lidar_configs
+./exts/omni.isaac.sensor/data/lidar_configs/
 ```
+
+IsaacSim needs to be configure to include the path above when searching for LIDAR config file during LIDAR creation. To do so, edit ```./exts/omni.isaac.sensor/config/extension.toml```. In that file, find the setting ```app.sensors.nv.lidar.profileBaseFolder``` and add ```"${app}/../exts/omni.isaac.sensor/data/lidar_configs/CUSTOM/"```
+
+Any custom LIDAR config .json file can be added to 
+
+```
+./exts/omni.isaac.sensor/data/lidar_configs/
+```
+
 
 ### Misc
 A full ROS transformation tree is also available as topics for coordinate frame transformation and localization truthing

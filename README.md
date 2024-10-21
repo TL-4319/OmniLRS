@@ -15,23 +15,26 @@ Source ROS2 for every new terminal. LAGER workstation already source ROS2 in .ba
 Prior to running the simulation, setup the environment of a new terminal by:
 
 ```
-LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/lagerworkstation/.local/share/ov/pkg/isaac-sim-2023.1.1/exts/omni.isaac.ros2_bridge/humble/lib
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/lagerworkstation/.local/share/ov/pkg/isaac-sim-4.1.0/exts/omni.isaac.ros2_bridge/humble/lib
 RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 ```
 
 To start a sample sim, run the following command:
 
 ```
-~/.local/share/ov/pkg/isaac-sim-2023.1.1/python.sh run.py environment=largescale
+~/.local/share/ov/pkg/isaac-sim-4.1.0/python.sh run.py environment=largescale
 ```
 
 There are several environment to choose from which are located in ```cfg/envronment```. Each environment yaml file define the type of environment, terrain generation params and robots. To swap to another environment e.g. defined in ```cfg/environment/lunaryard_20m.yaml```, change the above command to 
 
 ```
-  ~/.local/share/ov/pkg/isaac-sim-2023.1.1/python.sh run.py environment=lunaryard_20m
+  ~/.local/share/ov/pkg/isaac-sim-4.1.0/python.sh run.py environment=lunaryard_20m
 ```
 
 When the sim starts, stop the physics simulation and change the collision type to Separating Axis Theorem (SAT) instead of PCM in physics_scene/collision_type.
+
+>[!NOTE] 
+> Recently, IsaacSim 4.1.0 should be used over 2023.1.1 since the newer version has support for limiting publishing rate for camera and lidar
 
 
 ## Modify USD
@@ -39,14 +42,14 @@ When the sim starts, stop the physics simulation and change the collision type t
 To start Isaac sim without the rest of the Lunar functionalities to edit an USD. Set the environment path in a terminal with 
 
 ```
-LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/lagerworkstation/.local/share/ov/pkg/isaac-sim-2023.1.1/exts/omni.isaac.ros2_bridge/humble/lib
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/lagerworkstation/.local/share/ov/pkg/isaac-sim-4.1.0/exts/omni.isaac.ros2_bridge/humble/lib
 RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 ```
 
 Then start Isaac sim by
 
 ```
-~/.local/share/ov/pkg/isaac-sim-2023.1.1/isaac-sim.sh
+~/.local/share/ov/pkg/isaac-sim-4.1.0/isaac-sim.sh
 ```
 
 ## VIPER asset

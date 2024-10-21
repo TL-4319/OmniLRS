@@ -330,7 +330,7 @@ robots_settings:
 #    
     -
       robot_name: viper
-      usd_path: assets/USD_Assets/robots/viper.usd
+      usd_path: assets/USD_Assets/robots/viper_cam_only.usd
       pose:
         position: [5.0, 5.0, 0.5]
         orientation: [1, 0, 0, 0]

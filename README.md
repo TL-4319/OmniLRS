@@ -2,12 +2,7 @@
 
 This is a fork from the [OmniLRS project](https://github.com/AntoineRichard/OmniLRS) for testing by UA LAGER lab workstation.
 
-<<<<<<< HEAD
 ## Dependencies
-=======
-> [!IMPORTANT]
-> This readme provides basic information on how to use the simulation. For a more complete introduction to the simulation and its inner workings please [visit our wiki](https://github.com/AntoineRichard/OmniLRS/wiki)! For specific questions or to have a chat join [our discord](https://discord.gg/NUpKtFs6)!
->>>>>>> terrain_rework
 
 * Ubuntu 22.04
 * ROS2 Humble
@@ -19,64 +14,10 @@ Source ROS2 for every new terminal. LAGER workstation already source ROS2 in .ba
 
 Prior to running the simulation, setup the environment of a new terminal by:
 
-<<<<<<< HEAD
 ```
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/lagerworkstation/.local/share/ov/pkg/isaac-sim-4.1.0/exts/omni.isaac.ros2_bridge/humble/lib
 RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-=======
-> [!NOTE]
-> Please note that this is a partial release. More robots will be made available at a later date. Should you run into a bug, or would like to request a new feature, feel free to open an issue. Want to collaborate, reach out to us!
 
-## OmniLRS in action!
-
-First release:
-
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/PebUZjm0WuA/0.jpg)](https://www.youtube.com/watch?v=PebUZjm0WuA)
-
-Wheel traces:
-
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/TpzD0h-5hv4/0.jpg)](https://www.youtube.com/watch?v=TpzD0h-5hv4)
-
-Large Scale update:
-
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/3m78fO5uXwA/0.jpg)](https://www.youtube.com/watch?v=3m78fO5uXwA)
-
-
-
-## Installation
-
-In this page we'll walk you through the installation process of our simulation. Since our simulation is built on top of Isaac, you will need an Nvidia GPU to run it.
-
-Hardware requirement:
-- An Nvidia GPU:
-  - with 8+ Gb of VRAM (some scene will work on 4Gb)
-  - RTX Series 2000 or above.
-- A recent 12+ threads CPU.
-- 32Gb of RAM. (for some scene 16Gb is enough)
-- 10+ Gb of free space.
-
-Operating System:
-- Linux distros similar to Ubuntu 20.04 or 22.04.
-
-> [!WARNING]
-> Windows is not supported.
-
-To install the simulation we strongly suggest using [docker](#docker-install). Though the install could also be done using a [native installation](#native-installation).
-
-### Native installation
-
-The first thing that needs to be done before we proceed with the native installation is to install Isaac. We support two version 2023.1.1 and 4.1.0. Though we'd recommend sticking to **2023.1.1** as there are some issues with renderings in 4.1.0. Our dockers currently come in the 2023.1.1 version of Isaac.
-
-> [!TIP]
-> If you're unsure on how to install Isaac sim, look-up the following: [How to install Isaac Sim.](https://docs.omniverse.nvidia.com/isaacsim/latest/installation/install_workstation.html)
-
-To simplify the remainder of the installation process of the framework we provide a script that will automatically download all the assets, as well as install the required dependencies. It will not install Isaac Sim.
-> [!IMPORTANT]
-> Run this command at the root of the repository. 
-
-```bash
-scripts/install_native.sh
->>>>>>> terrain_rework
 ```
 
 To start a sample sim, run the following command:
@@ -102,24 +43,8 @@ When the sim starts, stop the physics simulation and change the collision type t
 To start Isaac sim without the rest of the Lunar functionalities to edit an USD. Set the environment path in a terminal with 
 
 ```
-<<<<<<< HEAD
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/lagerworkstation/.local/share/ov/pkg/isaac-sim-4.1.0/exts/omni.isaac.ros2_bridge/humble/lib
 RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-=======
-Then start the docker
-```bash
-./omnilrs.docker/run_docker.sh
-```
-And run the script in the docker:
-```bash
-scritps/install_docker.sh
-```
-This will download the assets from docker and it should work fine. The issue is that all the generated folder will be
-owned by root. So you may want to change that afterwards by running:
-```bash
-chown -R $USER assets
-chgrp -R $USER assets
->>>>>>> terrain_rework
 ```
 
 Then start Isaac sim by

@@ -397,6 +397,12 @@ class RockManager:
                     parents[name] = self.mixers[name].getParents()
                 # Updates the instancer.
                 output = {self.mappings[key]: value for key, value in output.items()}
+                # This section dump the rock position
+                #print("poopoo")
+                #print(name+".csv")
+                #print(output['position'].T)
+                import numpy
+                numpy.savetxt(name+".csv", output['position'].T, delimiter=",")
                 self.instancers[name].setInstanceParameter(**output)
 
     def setVisible(self, flag: bool) -> None:

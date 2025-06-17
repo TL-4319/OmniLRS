@@ -277,6 +277,7 @@ class TerrainManager:
         """
 
         self._DEM, self._background_mask, self._crater_mask, self._crater_ejecta_mask, self._craters_data = self._G.randomize()
+        
         self.update(update_collider=True)
 
     def deformTerrain(

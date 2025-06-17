@@ -80,7 +80,7 @@ class CraterGenerator:
         with open(self._profiles_path, "rb") as handle:
             self._profiles = pickle.load(handle)
         
-        # Quick part to see spline profile
+        # DEBUG: Quick part to see spline profile
         #for ii in range(len(self._profiles)):
         #    print(self._profiles[ii](0))
 
@@ -211,7 +211,7 @@ class CraterGenerator:
         # Index of the profile
         if index == -1:
             if size > (15 / self._resolution):
-                low_ratio_ind = self._rng.integers(0, 1, 1) # To pick between 5 and 13 for large craters
+                low_ratio_ind = self._rng.integers(0, 2, 1) # To pick between 5 and 13 for large craters
                 if low_ratio_ind == 0:
                     index = 5
                 else:
@@ -286,7 +286,7 @@ class CraterGenerator:
             #for coord, rad in zip(coords, radius):
                 coord = coords[crater_ind]
                 rad = radius[crater_ind]
-                rad = int(rad * 2 / self._resolution)
+                rad = int(rad * 4 / self._resolution)
                 coord_s = coord / self._resolution
                 c, crater_data = self.generateCrater(int(rad))
                 crater_data.metric_size = 2 * radius[crater_ind]
@@ -377,7 +377,6 @@ class CraterGenerator:
         crater_ejecta_mask_padded[:, : self._pad_size + 1] = 0
         crater_ejecta_mask_padded[-self._pad_size - 1 :, :] = 0
         crater_ejecta_mask_padded[:, -self._pad_size - 1 :] = 0
-
 
         # Return - DEM, background_mask, crater_mask, crater_ejecta_mask, crater_data
         return (
@@ -667,6 +666,7 @@ class GenerateProceduralMoonYard:
         self._crater_ejecta_mask = None
         self._dem_delta = None
         self._num_pass = None
+        self._size = moon_yard.base_terrain_generator.x_size
 
     def randomize(self) -> np.ndarray:
         """
@@ -686,6 +686,14 @@ class GenerateProceduralMoonYard:
         self._crater_mask = crater_mask
         self._crater_ejecta_mask = crater_ejecta_mask
         self._num_pass = np.zeros_like(crater_mask)
+
+        # Save crater data
+        # Save crater data 
+        with open("terrain_data/crater_data.txt",'w') as output_file:
+            for crater in craters_data:
+                data_str = "{:.5f}, {:.5f}, {:.3f}, {:.5f} \n".format(crater.coord[1], self._size - crater.coord[0], crater.metric_size, crater.depth_diameter_ratio)
+                output_file.write(data_str)
+
         return DEM, background_mask, crater_mask, crater_ejecta_mask, craters_data
 
     def augment(self, DEM: np.ndarray, background_mask: np.ndarray, crater_mask: np.ndarray, crater_ejecta_mask: np.ndarray) -> np.ndarray:

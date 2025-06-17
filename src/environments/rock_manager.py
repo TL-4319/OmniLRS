@@ -384,6 +384,14 @@ class RockManager:
         Args:
             num (int): The number of instances to generate.
         """
+        # Reset rock data file and open it
+        try:
+            os.remove("terrain_data/rock_data.txt")
+        except:
+            print("File does not exist. Regenerating")
+        output_file = open("terrain_data/rock_data.txt","a")
+
+        # Original implemantion of code to generate rock sampler
         if self.enable:
             parents = {}
             for name in self.execution_order:
@@ -399,12 +407,14 @@ class RockManager:
                 # Updates the instancer.
                 output = {self.mappings[key]: value for key, value in output.items()}
                 # This section dump the rock position
-                #print("poopoo")
-                #print(name+".csv")
-                #print(output['position'].T)
-                import numpy
-                numpy.savetxt(name+".csv", output['position'].T, delimiter=",")
+                for ii in range(output['position'].shape[0]):
+                    data_str = "{:.5f}, {:.5f}, {:.5f},{:.3f}\n".format(output['position'][ii,0],
+                                                                      output['position'][ii,1],
+                                                                      output['position'][ii,2],
+                                                                      output['scale'][ii,0])
+                    output_file.write(data_str)
                 self.instancers[name].setInstanceParameter(**output)
+        output_file.close()
 
     def setVisible(self, flag: bool) -> None:
         """

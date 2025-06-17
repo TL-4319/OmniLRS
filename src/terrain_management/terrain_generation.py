@@ -33,10 +33,12 @@ class CraterData:
     marks_spline: CubicSpline = None
     marks_intensity: float = 0
     size: int = 0
+    metric_size: float = 0
     crater_profile_id: int = 0
     xy_deformation_factor: Tuple[float, float] = (0, 0)
     rotation: float = 0
     coord: Tuple[int, int] = (0, 0)
+    depth_diameter_ratio: float = 0
 
 
 class CraterGenerator:
@@ -213,7 +215,7 @@ class CraterGenerator:
                 if low_ratio_ind == 0:
                     index = 5
                 else:
-                       index = 13
+                    index = 13
             else:
                 index = self._rng.integers(0, len(self._profiles), 1)[0]
             pass
@@ -222,6 +224,7 @@ class CraterGenerator:
         else:
             raise ValueError("Unknown profile")
         crater_data.crater_profile_id = index
+        crater_data.depth_diameter_ratio = abs(self._profiles[crater_data.crater_profile_id](0))
         return crater_data
 
     def generateCrater(
@@ -286,6 +289,7 @@ class CraterGenerator:
                 rad = int(rad * 2 / self._resolution)
                 coord_s = coord / self._resolution
                 c, crater_data = self.generateCrater(int(rad))
+                crater_data.metric_size = 2 * radius[crater_ind]
                 crater_data.coord = (coord[0], coord[1])
                 coord2 = (coord_s + self._pad_size).astype(np.int64)
                 coord = (coord_s - crater_data.size / 2 + self._pad_size).astype(np.int64)
